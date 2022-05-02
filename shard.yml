@@ -1,0 +1,17 @@
+name: offline-san
+version: 0.1.0
+
+authors:
+  - Henry Boles <henryjboles@gmail.com>
+
+targets:
+  offline-san:
+    main: src/offline-san.cr
+
+dependencies:
+  lexbor:
+    github: kostya/lexbor
+
+crystal: 1.2.2
+
+license: MIT
