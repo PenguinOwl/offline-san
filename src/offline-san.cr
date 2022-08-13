@@ -21,6 +21,7 @@ content = Lexbor::Parser.new(safe_web_get(url + "?toc=1"))
 chapter_count = content.css(".cnt_toc").first.inner_text.to_i
 title = content.css(".fic_title").first.inner_text
 author = content.css(".auth_name_fic").first.inner_text
+synopsis = content.css(".wi_fic_desc").first.inner_html
 img_url = URI.parse(content.css(".fic_image").first.scope.nodes(:img).first["src"])
 chapters += content.css(".toc_ol .toc_w").map{|node| {id: node["order"].to_i, link: node.scope.nodes(:a).first["href"], title: node.scope.nodes(:a).first.inner_text}}
 
@@ -42,6 +43,10 @@ title_page = <<-HERE
 <p>Compiled #{Time.local} by offline-san.</p>
 
 <p>Available online at <a href="#{url}">#{url}</a>.</p>
+<div style="page-break-after: always"></div><br>
+<b>Synopsis:</b>
+<br>
+#{synopsis}
 <div style="page-break-after: always"></div><br>
 <body>
 HERE
