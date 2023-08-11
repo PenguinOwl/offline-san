@@ -114,7 +114,7 @@ def download(url)
 
   puts "Compiling epub..."
   export = (base_path / "#{title}.epub")
-  system "pandoc --epub-chapter-level 1 \"#{(base_path / "title.html")}\" \"#{chapter_files.sort_by{|e| e[:id]}.map{|e| e[:path].to_s}.join("\" \"")}\" \"#{(base_path / "end.md")}\" -o \"#{export}\" --epub-cover-image \"#{img_path}\" --metadata title=\"#{title}\" --metadata author=\"#{author}\" -c \"#{base_path / "style.css"}\""
+  system "pandoc --split-level 1 \"#{(base_path / "title.html")}\" \"#{chapter_files.sort_by{|e| e[:id]}.map{|e| e[:path].to_s}.join("\" \"")}\" \"#{(base_path / "end.md")}\" -o \"#{export}\" --epub-cover-image \"#{img_path}\" --metadata title=\"#{title}\" --metadata author=\"#{author}\" -c \"#{base_path / "style.css"}\""
 
   File.copy((base_path / "#{title}.epub"), (finished_path / "#{title}.epub"))
   puts "Finished compiling #{title} to #{export}."
