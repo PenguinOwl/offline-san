@@ -7,7 +7,7 @@ def safe_web_get(url)
     return HTTP::Client.get(url).body
   rescue e
     puts "Failed: #{e.message}, retrying..."
-    sleep 10
+    sleep 10.seconds
     return safe_web_get(url)
   end
 end
